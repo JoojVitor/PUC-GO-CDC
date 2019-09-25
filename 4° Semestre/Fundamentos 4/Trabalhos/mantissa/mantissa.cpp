@@ -123,6 +123,7 @@ int main()
     final1+=",";
     final1+=final0;
 
+     int quantosPular;
     cout << endl;
     cout << "Final: ";
     cout << final1 << endl;
@@ -132,22 +133,48 @@ int main()
     {
         if(final1[i]==',')
         {
+            quantosPular=sqrt(parteInteira);
+
             char aux;
             char a=final1[i];
-            char b=final1[i-1];
+            char b=final1[i-quantosPular];
 
             aux=a;
             a=b;
             b=aux;
             final1[i]=a;
-            final1[i-1]=b;
+            final1[i-quantosPular]=b;
 
         }
     }
 
     cout << final1 << endl;
+    cout << "Conversão para Binario: " << final1 << "x2^" << quantosPular << endl;
+    cout << endl;
+
+    char sinal;
+    if(stoi(final1)<0)
+    {
+        sinal='1';
+    }
+    else sinal='0';
+
+    string expoente=to_string(127+quantosPular);
+    string expoenteToBin = bitset<8>(127+quantosPular).to_string();
+    int expoenteToBinInt=stoi(expoenteToBin);
+    //cout << expoenteToBinInt << endl;
+
+    string mantissa=final1;
+    mantissa.erase(0,2);
+
+    //cout << mantissa << endl;
+
+    cout << "IEEE754: ";
+    cout << sinal << " " << expoenteToBinInt << " " << mantissa << mantissa << mantissa << mantissa << endl;
+
+
+
 
 }
-
 
 
